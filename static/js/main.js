@@ -75,6 +75,7 @@ class Grid{
     }
 
     reset_grid(){
+        this.isMouseDown = false; 
         for (let i = 0; i < 28; i++) {
             for (let j = 0; j < 28; j++){
                 this.grid[i][j] = 0;
