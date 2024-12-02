@@ -106,6 +106,8 @@ document.getElementById('sendGrid').addEventListener('click', () => {
     .then(response => response.json())
     .then(data => {
         console.log('Success:', data);  // Respuesta del servidor
+        const predictionElement = document.getElementById('prediction');
+        predictionElement.textContent = `Predicción: ${data.data}`;
     })
     .catch((error) => {
         console.error('Error:', error);  // Si ocurre un error
