@@ -43,7 +43,27 @@ class Grid{
         const square = document.querySelector(`[data-coordinate="${i}-${j}"]`);
         square.style.backgroundColor = "black";
         this.grid[i][j] = 1;
+        this.updateNeighborCells(i, j);
     }    
+
+    updateNeighborCells(i, j) {
+        const neighbors = [
+            [-1, 0], [1, 0],  
+            [0, -1], [0, 1],  
+            [-1, -1], [-1, 1], [1, -1], [1, 1]  
+        ];
+    
+        neighbors.forEach(([dx, dy]) => {
+            const ni = i + dx;
+            const nj = j + dy;
+    
+            if (ni >= 0 && ni < 28 && nj >= 0 && nj < 28) {
+                const neighborSquare = document.querySelector(`[data-coordinate="${ni}-${nj}"]`);
+                neighborSquare.style.backgroundColor = "black";
+                this.grid[ni][nj] = 1;
+            }
+        });
+    }
 
     draw_grid(){
 
