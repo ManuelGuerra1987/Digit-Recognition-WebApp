@@ -45,7 +45,6 @@ class Grid{
         const square = document.querySelector(`[data-coordinate="${i}-${j}"]`);
         square.style.backgroundColor = "black";
         this.grid[i][j] = 1;
-        console.log(this.grid)
     }    
 
 
@@ -75,9 +74,42 @@ class Grid{
         
     }
 
+    reset_grid(){
+        for (let i = 0; i < 28; i++) {
+            for (let j = 0; j < 28; j++){
+                this.grid[i][j] = 0;
+            }
+
+        }
+
+
+    }
 
 }
 
 let grid = new Grid();
 grid.createGrid();
 grid.update_grid(); 
+
+
+document.getElementById('sendGrid').addEventListener('click', () => {
+    const gridData = JSON.stringify(grid.grid);  
+    console.log(gridData);  
+
+    fetch('/predict', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: gridData,  // Enviar la matriz como JSON
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);  // Respuesta del servidor
+    })
+    .catch((error) => {
+        console.error('Error:', error);  // Si ocurre un error
+    });
+    grid.reset_grid()
+    grid.update_grid()
+});
