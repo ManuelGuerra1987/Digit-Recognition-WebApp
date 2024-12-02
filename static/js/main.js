@@ -4,8 +4,6 @@ class Grid{
         this.isMouseDown = false; 
     }
 
-
-
     createGrid(){
 
         let containerDiv = document.querySelector("#grid");
@@ -47,7 +45,6 @@ class Grid{
         this.grid[i][j] = 1;
     }    
 
-
     draw_grid(){
 
         for (let i = 0; i < 28; i++) {
@@ -63,15 +60,8 @@ class Grid{
                     const square = document.querySelector(`[data-coordinate="${i}-${j}"]`);
                     square.style.backgroundColor = "black";
                 }
-
             }
         }
-    }
-
-
-    update_grid(){
-        this.draw_grid();
-        
     }
 
     reset_grid(){
@@ -80,39 +70,33 @@ class Grid{
             for (let j = 0; j < 28; j++){
                 this.grid[i][j] = 0;
             }
-
         }
-
-
     }
-
 }
 
 let grid = new Grid();
 grid.createGrid();
-grid.update_grid(); 
-
+grid.draw_grid(); 
 
 document.getElementById('sendGrid').addEventListener('click', () => {
     const gridData = JSON.stringify(grid.grid);  
-    console.log(gridData);  
-
+   
     fetch('/predict', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: gridData,  // Enviar la matriz como JSON
+        body: gridData,  
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Success:', data);  // Respuesta del servidor
+        console.log('Success:', data);  
         const predictionElement = document.getElementById('prediction');
         predictionElement.textContent = `Predicción: ${data.data}`;
     })
     .catch((error) => {
-        console.error('Error:', error);  // Si ocurre un error
+        console.error('Error:', error);  
     });
     grid.reset_grid()
-    grid.update_grid()
+    grid.draw_grid()
 });
