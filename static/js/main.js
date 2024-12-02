@@ -1,6 +1,7 @@
 class Grid{
     constructor(){
         this.grid = Array.from({ length: 28 }, () => Array(28).fill(0));
+        this.isMouseDown = false; 
     }
 
 
@@ -16,11 +17,36 @@ class Grid{
                 const square = document.createElement('div'); 
                 square.className = 'grid-square'; 
                 square.setAttribute('data-coordinate', `${i}-${j}`);
+                square.addEventListener('mousedown', (e) => this.handleMouseDown(e, i, j));
+                square.addEventListener('mouseover', (e) => this.handleMouseOver(e, i, j));
+                square.addEventListener('mouseup', (e) => this.handleMouseUp());                
                      
                 containerDiv.appendChild(square);
             }
         }
     }
+
+    handleMouseDown(e, i, j) {
+        this.isMouseDown = true;
+        this.updateSquareColor(i, j);
+    }
+
+    handleMouseOver(e, i, j) {
+        if (this.isMouseDown) {
+            this.updateSquareColor(i, j);
+        }
+    }
+
+    handleMouseUp() {
+        this.isMouseDown = false;
+    }
+    
+    updateSquareColor(i, j) {
+        const square = document.querySelector(`[data-coordinate="${i}-${j}"]`);
+        square.style.backgroundColor = "black";
+        this.grid[i][j] = 1;
+        console.log(this.grid)
+    }    
 
 
     draw_grid(){
