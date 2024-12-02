@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flask App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Prueba</h1>
-    <p>Este es un servidor básico usando Flask.</p>
-</body>
+
+    <body>
+        <div id="grid"></div>
+        <div ><h3 id="title"></h3></div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
 </html>
