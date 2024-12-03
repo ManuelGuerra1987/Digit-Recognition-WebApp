@@ -47,11 +47,7 @@ class Grid{
     }    
 
     updateNeighborCells(i, j) {
-        const neighbors = [
-            [-1, 0], [1, 0],  
-            [0, -1], [0, 1],  
-            [-1, -1], [-1, 1], [1, -1], [1, 1]  
-        ];
+        const neighbors = [[-1, 0], [1, 0],  [0, -1], [0, 1],  [-1, -1], [-1, 1], [1, -1], [1, 1] ];
     
         neighbors.forEach(([dx, dy]) => {
             const ni = i + dx;
@@ -112,11 +108,17 @@ document.getElementById('sendGrid').addEventListener('click', () => {
     .then(data => {
         console.log('Success:', data);  
         const predictionElement = document.getElementById('prediction');
-        predictionElement.textContent = `Predicción: ${data.data}`;
+        predictionElement.textContent = `Prediction: ${data.data}`;
     })
     .catch((error) => {
         console.error('Error:', error);  
     });
-    grid.reset_grid()
-    grid.draw_grid()
+});
+
+document.getElementById('cleanGrid').addEventListener('click', () => {
+
+    grid.reset_grid();
+    grid.draw_grid(); 
+    const predictionElement = document.getElementById('prediction');
+    predictionElement.textContent = `Prediction: `;
 });

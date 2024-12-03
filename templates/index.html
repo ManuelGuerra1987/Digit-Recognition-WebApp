@@ -8,11 +8,17 @@
 </head>
 <body>
 
-    <body>
+    <div class="header">
+        <h1>Handwritten Digit Recognition</h1>
+    </div>
         <div id="grid"></div>
-        <div ><h3 id="title"></h3></div>
-        <div><button id="sendGrid">Enviar Cuadrícula</button></div>
-        <p id="prediction">Predicción: </p>
+      
+        <div id="predict-button">
+            <button id="sendGrid">Predict</button>
+            <button id="cleanGrid">Clean</button>
+        </div>
+
+        <div id="prediction-div"><p id="prediction">Prediction: </p></div>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
   
   </body>
