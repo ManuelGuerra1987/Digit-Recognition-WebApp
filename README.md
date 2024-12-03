@@ -30,6 +30,6 @@ Run the web application with the trained model:
 
 ```python app.py model.h5```
 
-and then access http://localhost:5000/
+and then access http://localhost:10000/
 
 ![demo](https://github.com/ManuelGuerra1987/Digit-Recognition-WebApp/blob/main/demo.jpg)
