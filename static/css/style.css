@@ -16,6 +16,12 @@ body {
     text-align: center;
 }
 
+.footer {
+    background-color: #cfd6e7;
+    color: #110808;
+    padding: 1rem;
+}
+
 #grid {
     display: grid;
     grid-template-columns: repeat(28, 10px);
@@ -33,6 +39,11 @@ body {
 #prediction-div{
     margin-left: 500px;
     margin-top: 10px;
+    width: 280px;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.5;
+    background-color: #7e96d3;
 }
 
 .grid-square{
@@ -55,4 +66,7 @@ button {
     text-align: center;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     vertical-align: middle;
+    width: 138px;
+    font-size: 20px;
 }
+
