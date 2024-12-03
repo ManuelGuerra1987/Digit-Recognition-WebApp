@@ -6,7 +6,10 @@ import os
 
 # Check command-line arguments
 if len(sys.argv) != 2:
-    sys.exit("Usage: python recognition.py model.h5")
+
+    sys.exit("Usage: python app.py model.h5")
+
+#Loads the pre-trained CNN model    
 model = tf.keras.models.load_model(sys.argv[1])
 classification = None
 
@@ -14,6 +17,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+
     return render_template('index.html')
 
 @app.route('/predict', methods=['POST'])
@@ -25,15 +29,17 @@ def predict():
 
         if not data:
             return jsonify({"error": "No JSON received"}), 400
+        
+        #Reshape the input into a 4D array: 1 batch, 28x28 img, 1 channel (grayscale)
+        data_4D = np.array(data).reshape(1, 28, 28, 1)
 
-        classification = model.predict(
-            [np.array(data).reshape(1, 28, 28, 1)]
-        ).argmax()
+        #Prediction using the pre-trained CNN model
+        classification = model.predict([data_4D])
 
-        print(classification)
-        classification = int(classification)
+        #Finds the index of the highest probability in the model's output
+        prediction = int(classification.argmax())
 
-        return jsonify({"message": "Matriz recibida correctamente", "data": classification})
+        return jsonify({"message": "Matriz recibida correctamente", "data": prediction})
 
     except Exception as e:
         
