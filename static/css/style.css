@@ -10,10 +10,15 @@ body {
 
 .header {
     background-color: #477bff;
-    color: #fff;
+    color: #0e0d0d;
     margin-bottom: 1rem;
     padding: 1rem 1rem;
     text-align: center;
+}
+
+a {
+    color: #0a0a0a; 
+    text-decoration: none; 
 }
 
 .footer {
