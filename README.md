@@ -2,6 +2,8 @@
 
 live demo: https://digit-recognition-webapp.onrender.com/
 
+It may take up to 1 minute to load the website if the server is off.
+
 ## Project Description
 
 This project demonstrates the development of a deep learning-based web application using Flask and TensorFlow for handwritten digit recognition. The application involves two main components:
